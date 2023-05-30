@@ -1,0 +1,40 @@
+@import '../../sass/abstracts/mixins';
+@import '../../main.scss';
+
+
+.Footer {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #ececec;
+  padding: 40px 0 80px;
+  margin: 0 auto;
+  &__items {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    &__logo {
+      padding: 30px;
+      min-width: 200px;
+
+    }
+  }
+}
+
+@include tablet {
+  .Footer {
+
+    &__items {
+      width: 90%;
+      flex-direction: column;
+
+    }
+  }
+}
+
+@include mobile {
+  .Footer {
+
+    display: none;
+  }
+}

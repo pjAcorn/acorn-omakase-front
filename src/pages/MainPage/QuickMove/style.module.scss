@@ -1,0 +1,30 @@
+@import '../../../sass/abstracts/mixins';
+@import '../../../main.scss';
+
+.resultContainer {
+  background-color: #f2f2f2;
+  &__wrap {
+    position: relative;
+    border: 0.0625rem solid #f2f2f2;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 60%;
+    margin: auto;
+    padding: 300px 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    &__header {
+      font-size: 20px;
+    }
+    img {
+      margin: 50px auto 30px;
+      width: 300px;
+      height: 300px;
+    }
+    &__result {
+      font-size: 50px;
+    }
+  }
+}

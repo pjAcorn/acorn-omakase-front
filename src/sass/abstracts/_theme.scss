@@ -1,0 +1,9 @@
+@use "./_variables" as *;
+:root {
+	--font-NanumSquareNeo-Variable: "NanumSquareNeo-Variable";
+}
+html[data-theme="light"] {
+  --color-text: #{$text-color-1};
+  --color-background: #{$bg-color-1};
+  --color-btn : #{$btn-color-1};
+}

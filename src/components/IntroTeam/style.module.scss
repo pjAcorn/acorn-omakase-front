@@ -1,0 +1,38 @@
+.IntroTeam {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 420px;
+    padding: 30px;
+    &__top {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    &__title {
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 800;
+        width: 140px;
+        line-height: 30px;
+        vertical-align: top;
+    }
+    &__bottom {
+        width: 100%;
+    }
+}
+.Member {
+    display: flex;
+    margin-bottom: 10px;
+    &__position{
+        display: inline-block;
+        font-weight: 800;
+        width: 40px;
+    }
+    &__name{
+        width: 100px;
+    }
+    &__url{
+        cursor: pointer;
+        color: gray;
+    }
+}
