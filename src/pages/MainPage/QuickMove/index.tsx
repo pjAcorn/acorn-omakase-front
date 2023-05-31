@@ -13,7 +13,7 @@ const QuickMove = () => {
         width='200px'
         height='85px'
         color='#000'
-        background='#f7fe92'
+        background='#d25959'
       />
       </div>
       <div className={styles.Button2}>
@@ -23,7 +23,7 @@ const QuickMove = () => {
         width='200px'
         height='85px'
         color='#000'
-        background='#f7fe92'
+        background='#d25959'
       />
       </div>
     </header>
