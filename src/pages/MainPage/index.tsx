@@ -9,10 +9,8 @@ const MainPage = () => {
                 <MainImage />
             </div>
             <div className={styled.Button}>
-
                 <QuickMove />
             </div>
-
         </>
     )
 }
