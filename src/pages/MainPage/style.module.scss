@@ -3,16 +3,38 @@
 
 // 반응형 테스트 : 색 바꾸기
 .MainPage {
-  // background-color: red;
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin: 80px auto;
-  &__title {
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin: 8px;
+  padding-left: 18%;
+  width: 35%;
+  margin: 55px auto;
+  float: left;
+  &__Button {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    flex-direction: column;
+    padding-left: 10%;
+    width: 100%;
+    float: right;
+    position: absolute;
+    bottom: 0;
+    
+    margin: 80px auto;
   }
+}
+
+.Button {
+  display: flex;
+  position: absolute;
+  padding-left: 10%;
+  width: 40%;
+  float: right;
+  left: 55%;
+  bottom: 0;
+  top: 200px;
+  margin: 80px auto;
 }
 
 @include tablet {

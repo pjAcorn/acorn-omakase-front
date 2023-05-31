@@ -20,15 +20,15 @@ const MainImage = ({ width, height, $filter }: SymbolProps) => {
   };
   
   MainImage.defaultProps = {
-    width: '500px',
+    width: '100%',
     height: '100%',
   };
   
   const StyledLogo = styled.div<SymbolProps>`
     cursor: pointer;
-    ${(props) => (props.$filter ? 'none' : 'background-color: #fafafa')};
+    ${(props) => (props.$filter ? 'none' : 'background-color: rgb(255, 255, 255)')};
     img {
-      ${(props) => (props.$filter ? 'none' : 'background-color: #fafafa')};
+      ${(props) => (props.$filter ? 'none' : 'background-color: rgb(255, 255, 255)')};
       filter: ${(props) => (props.$filter ? 'grayscale(100%)' : 'none')};
     }
   `;

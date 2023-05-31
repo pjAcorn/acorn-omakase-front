@@ -5,20 +5,27 @@ import styles from './style.module.scss';
 const QuickMove = () => {
   const navigate = useNavigate();
   return (
-    <header className={styles.resultContainer}>
+    <header>
+      <div className={styles.Button}>
       <Button
         text='내 가게 찾기'
         onClick={() => navigate('/analyze')}
-        width='88px'
-        height='40px'
+        width='200px'
+        height='85px'
         color='#000'
-        background='#fff'
+        background='#f7fe92'
       />
+      </div>
+      <div className={styles.Button2}>
       <Button 
         text='커뮤니티' 
         onClick={() => navigate('/post')} 
-        width='105px' 
-        height='40px' />
+        width='200px'
+        height='85px'
+        color='#000'
+        background='#f7fe92'
+      />
+      </div>
     </header>
   );
 };

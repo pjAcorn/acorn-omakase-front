@@ -12,7 +12,7 @@ export const StyledLogo = styled.div`
   cursor: pointer;
   img {
     width: 108px;
-    height: 60px;
+    height: 80px;
   }
 `;
 export default TextLogo;

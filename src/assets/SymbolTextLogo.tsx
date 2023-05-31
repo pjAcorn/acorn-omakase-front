@@ -21,7 +21,7 @@ const SymbolTextLogo = ({ width, height, $filter }: SymbolProps) => {
   
   SymbolTextLogo.defaultProps = {
     width: '350px',
-    height: '80px',
+    height: '90px',
   };
   
   const StyledLogo = styled.div<SymbolProps>`
