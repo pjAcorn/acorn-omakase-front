@@ -1,0 +1,36 @@
+.PostForm {
+    border: 0.0625rem solid #f2f2f2;
+    border-radius: 8px;
+    width: 414px;
+    padding: 40px;
+    background-color: #fff;
+    .support {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      a {
+        position: relative;
+        margin: 0 15px;
+        color: #737373;
+        &::after {
+          content: '';
+          position: absolute;
+          top: 3px;
+          right: -15px;
+          height: 8px;
+          display: inline-block;
+          border: 1px solid #d9d9d9;
+        }
+        &:last-child::after {
+          display: none;
+        }
+      }
+    }
+    &__error {
+      text-align: center;
+      display: block;
+      color: #bf0b0b;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+  }
