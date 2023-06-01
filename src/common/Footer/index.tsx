@@ -51,7 +51,7 @@ const Footer = () => {
         <nav className={styles.Footer}>
             <div className={styles.Footer__items}>
                 <div className={styles.Footer__items__logo}>
-                 <SymbolTextLogo $filter width='162px' height='80px' />
+                 <SymbolTextLogo $filter width='142px' height='142px' />
                 </div>
                 <IntroTeam title='Member' members={Members} url={frontEndUrl} />
                 <IntroTeam title='' members={Members2} url={backEndUrl} />
