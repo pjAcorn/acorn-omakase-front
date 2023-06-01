@@ -1,0 +1,37 @@
+@import '../../sass/abstracts/mixins';
+@import '../../main.scss';
+
+.Container {
+    padding-top: 100px;
+}
+
+.Frame {
+    margin: 0 auto;
+    padding-top: 30px;
+    width: 30%;
+    height: 300px;
+    text-align: center;
+    background-color: #F7CFCF;
+    border-radius: 30px;
+}
+
+.inputTable {
+    text-align: left;
+    margin-left: 100px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.td {
+    padding: 4px;
+    padding-right: 7px;
+}
+
+.findBtn {
+    margin: 3px;
+}
+
+Button {
+    margin: 10px;
+    margin-top: 20px;
+}
