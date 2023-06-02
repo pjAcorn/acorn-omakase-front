@@ -12,7 +12,7 @@ const Routing: React.FC = (): JSX.Element => (
     <Header />
     <Routes>
       <Route path='/*' element={<MainPage />} />
-      <Route path='/post' element={<PostPage />} />
+      <Route path='/posts' element={<PostPage />} />
       <Route path='/login' element={<Login />} />
     </Routes>
     <Footer />

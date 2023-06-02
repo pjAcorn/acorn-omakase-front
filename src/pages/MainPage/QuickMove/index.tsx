@@ -19,7 +19,7 @@ const QuickMove = () => {
       <div className={styles.Button2}>
       <Button 
         text='커뮤니티' 
-        onClick={() => navigate('/post')} 
+        onClick={() => navigate('/posts')} 
         width='200px'
         height='85px'
         color='#000'
