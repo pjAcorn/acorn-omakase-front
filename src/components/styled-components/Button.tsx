@@ -3,15 +3,17 @@ import styled from 'styled-components';
 interface ButtonProps {
   text: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
   background?: string;
   color?: string;
   width?: string;
   height?: string;
 }
 
-const Button = ({ text, onClick, background, color, width, height }: ButtonProps) => {
+const Button = ({ text, className, onClick, background, color, width, height }: ButtonProps) => {
   return (
     <StyledButton
+      className={className}
       onClick={onClick}
       color={color}
       width={width}

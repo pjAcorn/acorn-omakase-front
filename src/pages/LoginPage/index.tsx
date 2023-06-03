@@ -31,6 +31,7 @@ const Login = () => {
                         </table>
                         <span className={styles.findBtn}>아이디 찾기 </span> | <span className={styles.findBtn}>비밀번호 찾기</span><br/>
                         <Button
+                            className={styles.memBtn}
                             text='로그인' 
                             /* 로그인 데이터 전송 구현 */
                             onClick={() => navigate('/main')} 
@@ -40,6 +41,7 @@ const Login = () => {
                             background='#D25959'
                         />
                         <Button
+                            className={styles.memBtn}
                             text='회원가입' 
                             onClick={() => navigate('/signup')} 
                             width='100px'
