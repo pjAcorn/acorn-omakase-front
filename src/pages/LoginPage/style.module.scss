@@ -17,9 +17,9 @@
 
 .inputTable {
     text-align: left;
-    margin-left: 100px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin: 0 auto;
 }
 
 .td {
@@ -31,7 +31,7 @@
     margin: 3px;
 }
 
-Button {
+.memBtn {
     margin: 10px;
     margin-top: 20px;
 }
