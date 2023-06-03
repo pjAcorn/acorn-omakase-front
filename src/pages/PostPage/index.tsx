@@ -1,34 +1,52 @@
 import LabelBasicInput from '../../components/LabelBasicInput';
-import { useState, SyntheticEvent, useCallback, useEffect } from 'react';
+import { useState, SyntheticEvent, useCallback, useEffect, JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal } from 'react';
+import API from '../../API/API';
+import axios from 'axios';
 import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
-import API from '../../API/API';
-import { useNavigate } from 'react-router-dom';
+import Label from '../../components/styled-components/Label';
 
 interface PostFormData {
-    title: string;
-    content: string;
-    nickname: string;
-    category: string;
+        title: string,
+        content: string,
+        nickname: string,
+        created_at: string
+
 }
 
-// const [postData, setPostData] = useState<PostFormData>({
-//     title: '',
-//     content: '',
-//     nickname: '',
-//     category: '',
-// });
-
-// const useEffect(() => {
-//     const getProfile = async () => {
-//       const response = await API.getPosts();
-//       setPostData(response.data);
-//       setUserEmail(response.data.email);
-//     };
-//     getProfile();
-// }, [userId]);
-
 const PostPage = () => {
+
+    const [postData, setPostData] = useState([{
+        title: '',
+        content: '',
+        nickname: '',
+        created_at: '',
+}]);
+
+
+    useEffect(() => {
+        const getPosts = async () => {
+            const response = await API.viewPost();
+
+            setPostData(response.data.list);
+            console.log(postData);
+        };
+        getPosts();
+    }, []);
+
+
+
+    const [page, setPage] = useState(1); //페이지
+    const pageSize = 10; // posts가 보일 최대한의 갯수
+    const offset = (page - 1) * pageSize; // 시작점과 끝점을 구하는 offset
+
+    const postsData = (posts) => {
+        if (posts) {
+            let result = posts.slice(offset, offset + pageSize);
+            return result;
+        }
+    }
+
     return (
         <div className={styles.main}>
             <form className={styles.top}>
@@ -54,10 +72,9 @@ const PostPage = () => {
                 />
             </form>
             <form>
-                게시판 메인 내용 ▽
 
             </form>
-        </div>
+        </div >
     );
 };
 
