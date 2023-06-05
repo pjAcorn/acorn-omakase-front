@@ -1,0 +1,59 @@
+@import '../../../sass/abstracts/mixins';
+@import '../../../main.scss';
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.Container {
+    padding-top: 100px;
+}
+
+.Frame {
+    margin: 0 auto;
+    padding-top: 30px;
+    width: 30%;
+    height: 300px;
+    text-align: center;
+    background-color: #F7CFCF;
+    border-radius: 30px;
+}
+
+.inputTable {
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+    margin-top: 10px;
+    .input {
+        font-family: 'NanumSquareNeo-Variable';
+        padding: 6px;
+        border: none;
+        border-radius: 4px;
+    }
+}
+
+.td {
+    padding: 4px;
+    padding-right: 7px;
+}
+
+.find {
+    font-size: 0.8rem !important;
+    &__btn {
+        font-size: 0.8rem !important;
+        margin-top: 10px;
+    }
+}
+
+.memBtn {
+    margin: 10px;
+    margin-top: 10px;
+}

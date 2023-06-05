@@ -2,11 +2,8 @@
 @import '../../main.scss';
 
 .Header {
-  position: sticky;
-  z-index: 100;
   display: flex;
   justify-content: center;
-  top: 0;
   background-color: var(--color-background);
   margin: auto;
   height: 72px;
