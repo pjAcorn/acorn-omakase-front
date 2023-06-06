@@ -16,19 +16,14 @@ interface PostFormData {
 
 const PostPage = () => {
 
-    const [postData, setPostData] = useState([{
-        title: '',
-        content: '',
-        nickname: '',
-        created_at: '',
-}]);
+    const [postData, setPostData] = useState([]);
 
 
     useEffect(() => {
         const getPosts = async () => {
             const response = await API.viewPost();
-
-            setPostData(response.data.list);
+            const postList = response.data.list;
+            setPostData(postList);
             console.log(postData);
         };
         getPosts();
@@ -39,13 +34,6 @@ const PostPage = () => {
     const [page, setPage] = useState(1); //페이지
     const pageSize = 10; // posts가 보일 최대한의 갯수
     const offset = (page - 1) * pageSize; // 시작점과 끝점을 구하는 offset
-
-    const postsData = (posts) => {
-        if (posts) {
-            let result = posts.slice(offset, offset + pageSize);
-            return result;
-        }
-    }
 
     return (
         <div className={styles.main}>
@@ -72,7 +60,9 @@ const PostPage = () => {
                 />
             </form>
             <form>
-
+                <div>{postData.map((post) => (
+                    <li key={post.idx}>{post.post_id} {post.nickname} {post.title} {post.created_at}</li>
+                ))}</div>
             </form>
         </div >
     );
