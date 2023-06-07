@@ -61,15 +61,32 @@ const PostPage = () => {
                 />
             </form>
             <form className={styles.list}>
-                <div>
-                    {postData.map((post) => (
-                        <li key={post.post_id}>
-                            <Link to={`/posts/${post.post_id}`}>
-                               {post.post_id} {post.nickname} {post.title} {post.created_at}
-                            </Link>
-                        </li>
-                    ))}
-                </div>
+                <table className={styles.table}>
+                    <thead>
+                        <tr>
+                          <Link to={`/posts`}>
+                            <th>최신순</th>
+                          </Link>
+                          <Link to={`/posts/view`}>
+                            <th>조회순</th>
+                          </Link>
+                          <Link to={`/posts/like`}>
+                            <th>좋아요순</th>
+                          </Link>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {postData.map((post) => (
+                            <tr key={post.post_id}>
+                                <td>{post.nickname}</td>
+                                <Link to={`/posts/${post.post_id}`} className={styles.table}>
+                                    <td>{post.title}</td>
+                                </Link>
+                                <td>{post.created_at}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </form>
         </div >
     );
