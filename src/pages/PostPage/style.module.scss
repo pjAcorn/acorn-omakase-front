@@ -3,91 +3,107 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 
-.main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .top {
+    text-align: start;
+    color: #fffdfd;
+    margin: 0;
+    width: 100%;
+    padding: 40px;
+    background-color: #D25959;
     flex-direction: column;
 
-    .top {
-        text-align: start;
-        color: #fffdfd;
-        margin: 0;
-        width: 100%;
-        padding: 40px;
-        background-color: #D25959;
-        flex-direction: column;
-        .h1 {
-            display: flex;
-            padding-left: 55px;
-            background-color: #D25959;
-            width: 500px;
-            justify-content: center;
-            align-items: center;
-            font-size: 2em;
-        }
-        .btext {
-            margin-top: 10px;
-            padding-left: 220px;
-            background-color: #737373;
-        }
+    .h1 {
+      display: flex;
+      padding-left: 55px;
+      background-color: #D25959;
+      width: 500px;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
     }
-    .PostForm {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: 0.0625rem solid #ef3b3b;
-        border-radius: 8px;
-        margin: 10px;
-        width: 68%;
-        padding: 40px;
-        background-color: #fff;
-        flex-direction: row;
-        .label {
-            text-align: right;
-            margin-left: 200px;
-            font-size: xx-large;
-            width: 700px;
-            height: 40px;
-            margin: 15px;
-            margin-top: 25px;
-            padding-top: 10px;
+
+    .btext {
+      margin-top: 10px;
+      padding-left: 220px;
+      background-color: #737373;
+    }
+  }
+
+  .PostForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.0625rem solid #ef3b3b;
+    border-radius: 8px;
+    margin: 10px;
+    width: 68%;
+    padding: 40px;
+    background-color: #fff;
+    flex-direction: row;
+
+    .label {
+      text-align: right;
+      margin-left: 200px;
+      font-size: xx-large;
+      width: 700px;
+      height: 40px;
+      margin: 15px;
+      margin-top: 25px;
+      padding-top: 10px;
+    }
+
+    .category {
+      font-size: large;
+      text-align: center;
+      border-right: 0.0625rem solid #ef3b3b;
+      margin: 5px;
+      padding-right: 20px;
+      background-color: #fff;
+
+      .li {
+        font-size: 15px;
+        position: relative;
+        margin-top: 15px;
+        color: #D25959;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 3px;
+          right: -15px;
+          height: 8px;
+          display: inline-block;
+          border: 1px solid #F7CFCF;
         }
-        .category {
-          font-size:large;
-          text-align: center;
-          border-right: 0.0625rem solid #ef3b3b;
-          margin: 5px;
-          padding-right: 20px;
-          background-color: #fff;
-          .li {
-            font-size: 15px;
-            position: relative;
-            margin-top: 15px;
-            color: #D25959;
-            &::after {
-              content: '';
-              position: absolute;
-              top: 3px;
-              right: -15px;
-              height: 8px;
-              display: inline-block;
-              border: 1px solid #F7CFCF;
-            }
-            &:last-child::after {
-              display: none;
-            }
-          }
-        }
-        &__error {
-          text-align: center;
-          display: block;
-          color: #F7CFCF;
-          font-size: 13px;
-          margin-bottom: 15px;
+
+        &:last-child::after {
+          display: none;
         }
       }
+    }
+
+    &__error {
+      text-align: center;
+      display: block;
+      color: #F7CFCF;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+  }
+
+  .list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 5px 0px 5px 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #efefef;
+  }
 }
-
-
-
