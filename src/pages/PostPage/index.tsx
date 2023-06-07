@@ -4,13 +4,14 @@ import API from '../../API/API';
 import axios from 'axios';
 import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
+import { Link } from 'react-router-dom';
 import Label from '../../components/styled-components/Label';
 
 interface PostFormData {
-        title: string,
-        content: string,
-        nickname: string,
-        created_at: string
+    title: string,
+    content: string,
+    nickname: string,
+    created_at: string
 
 }
 
@@ -24,7 +25,7 @@ const PostPage = () => {
             const response = await API.viewPost();
             const postList = response.data.list;
             setPostData(postList);
-            console.log(postData);
+            console.log(postList);
         };
         getPosts();
     }, []);
@@ -59,10 +60,16 @@ const PostPage = () => {
                     background='#737373'
                 />
             </form>
-            <form>
-                <div>{postData.map((post) => (
-                    <li key={post.idx}>{post.post_id} {post.nickname} {post.title} {post.created_at}</li>
-                ))}</div>
+            <form className={styles.list}>
+                <div>
+                    {postData.map((post) => (
+                        <li key={post.post_id}>
+                            <Link to={`/posts/${post.post_id}`}>
+                               {post.post_id} {post.nickname} {post.title} {post.created_at}
+                            </Link>
+                        </li>
+                    ))}
+                </div>
             </form>
         </div >
     );
