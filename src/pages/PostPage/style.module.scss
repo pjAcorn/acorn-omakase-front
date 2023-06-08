@@ -96,14 +96,32 @@
       margin-bottom: 15px;
     }
   }
-
   .list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-    padding: 5px 0px 5px 5px;
-    margin-bottom: 5px;
-    border-bottom: 1px solid #efefef;
+    width: 74%;
+    margin: 10px;
+    margin-bottom: 100px;
+    border-radius: 8px;
+    border: 1px solid #D25959;
+    
+
+
+  }
+  .table {
+    display: table;
+    table-layout: fixed;
+    width:100%;
+    text-align: center;
+    .th, td {
+      border-bottom: 1px solid #F7CFCF;
+      padding: 20px 10px;
+      background-color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      
+      .title {
+        width: 500px;
+      }
+    }
   }
 }
