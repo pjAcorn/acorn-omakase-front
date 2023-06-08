@@ -4,32 +4,28 @@ import API from '../../API/API';
 import axios from 'axios';
 import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
+import { Link } from 'react-router-dom';
 import Label from '../../components/styled-components/Label';
 
 interface PostFormData {
-        title: string,
-        content: string,
-        nickname: string,
-        created_at: string
+    title: string,
+    content: string,
+    nickname: string,
+    created_at: string
 
 }
 
 const PostPage = () => {
 
-    const [postData, setPostData] = useState([{
-        title: '',
-        content: '',
-        nickname: '',
-        created_at: '',
-}]);
+    const [postData, setPostData] = useState([]);
 
 
     useEffect(() => {
         const getPosts = async () => {
             const response = await API.viewPost();
-
-            setPostData(response.data.list);
-            console.log(postData);
+            const postList = response.data.list;
+            setPostData(postList);
+            console.log(postList);
         };
         getPosts();
     }, []);
@@ -39,13 +35,6 @@ const PostPage = () => {
     const [page, setPage] = useState(1); //페이지
     const pageSize = 10; // posts가 보일 최대한의 갯수
     const offset = (page - 1) * pageSize; // 시작점과 끝점을 구하는 offset
-
-    const postsData = (posts) => {
-        if (posts) {
-            let result = posts.slice(offset, offset + pageSize);
-            return result;
-        }
-    }
 
     return (
         <div className={styles.main}>
@@ -71,8 +60,33 @@ const PostPage = () => {
                     background='#737373'
                 />
             </form>
-            <form>
-
+            <form className={styles.list}>
+                <table className={styles.table}>
+                    <thead>
+                        <tr>
+                          <Link to={`/posts`}>
+                            <th>최신순</th>
+                          </Link>
+                          <Link to={`/posts/view`}>
+                            <th>조회순</th>
+                          </Link>
+                          <Link to={`/posts/like`}>
+                            <th>좋아요순</th>
+                          </Link>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {postData.map((post) => (
+                            <tr key={post.post_id}>
+                                <td>{post.nickname}</td>
+                                <Link to={`/posts/${post.post_id}`} className={styles.table}>
+                                    <td>{post.title}</td>
+                                </Link>
+                                <td>{post.created_at}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </form>
         </div >
     );

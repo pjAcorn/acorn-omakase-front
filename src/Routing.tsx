@@ -5,7 +5,8 @@ import PostPage from './pages/PostPage';
 import Header from './common/Header';
 import Footer from './common/Footer';
 import LoginPage from './pages/MemberPage/LoginPage';
-import SignupPage from './pages/MemberPage/SignupPage';
+import SignupPage from './pages/MemberPage/LoginPage';
+import PostDetail from './pages/PostPage/PostDetail';
 
 
 const Routing: React.FC = (): JSX.Element => (
@@ -13,8 +14,8 @@ const Routing: React.FC = (): JSX.Element => (
     <Header />
     <Routes>
       <Route path='/*' element={<MainPage />} />
-      <Route path='/posts' element={<PostPage/>} />
       <Route path='/posts' element={<PostPage />} />
+      <Route path='/posts/:idx' element={<PostDetail />} />
       <Route path='/login' element={<LoginPage />} />
       <Route path='/signup' element={<SignupPage />} /> 
     </Routes>
