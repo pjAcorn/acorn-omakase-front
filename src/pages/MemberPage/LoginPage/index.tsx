@@ -21,7 +21,7 @@ const LoginPage = () => {
             <div className={styles.Frame}>
                 <DesktopLogo />
                 <div>
-                    <form name='loginForm' onSubmit={sendLoginData}>
+                    <form onSubmit={sendLoginData}>
                         <table className={styles.inputTable}>
                             <tr> 
                                 <td className={styles.td}>
