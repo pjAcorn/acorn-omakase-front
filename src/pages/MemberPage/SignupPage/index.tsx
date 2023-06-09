@@ -4,15 +4,20 @@ import DesktopLogo from '../../../assets/TextLogo';
 import Button from '../../../components/styled-components/Button';
 import axios from 'axios'
 
-const SERVER_LOGIN_URL = 'http://localhost:8080/users/login'
+const SERVER_SIGNUP_URL = 'http://localhost:8080/users/signup'
 
-const LoginPage = () => {
-    const sendLoginData = async (e) => {
+const SignupPage = () => {
+    const sendSignupData = async (e) => {
         e.preventDefault();
         const loginId = e.target.id.value;
         const password = e.target.password.value;
-        await axios.post(SERVER_LOGIN_URL, { loginId, password });
-        navigate('/main')
+        const passwordConf = e.target.passwordConf.value;
+        const name = e.target.name.value;
+        const nickname = e.target.nickname.value;
+        const email = e.target.email.value;
+        const region = e.target.region.value;
+        await axios.post(SERVER_SIGNUP_URL, { loginId, password, passwordConf, name, nickname, email, region });
+        // navigate('/login')
     }
 
     const navigate = useNavigate();
@@ -21,7 +26,7 @@ const LoginPage = () => {
             <div className={styles.Frame}>
                 <DesktopLogo />
                 <div>
-                    <form name='loginForm' onSubmit={sendLoginData}>
+                    <form onSubmit={sendSignupData}>
                         <table className={styles.inputTable}>
                             <tr> 
                                 <td className={styles.td}>
@@ -39,32 +44,51 @@ const LoginPage = () => {
                                     <input className={styles.input} name='password' type='password' />
                                 </td>
                             </tr>
+                            <tr>
+                                <td className={styles.td}>
+                                    <label>비밀번호 확인</label>
+                                </td>
+                                <td className={styles.td}>
+                                    <input className={styles.input} name='passwordConf' type='password' />
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td className={styles.td}>
+                                    <label>이름</label>
+                                </td>
+                                <td className={styles.td}>
+                                    <input className={styles.input} name='name' />
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td className={styles.td}>
+                                    <label>닉네임</label>
+                                </td>
+                                <td className={styles.td}>
+                                    <input className={styles.input} name='nickname' />
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td className={styles.td}>
+                                    <label>이메일</label>
+                                </td>
+                                <td className={styles.td}>
+                                    <input className={styles.input} name='email' />
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td className={styles.td}>
+                                    <label>지역</label>
+                                </td>
+                                <td className={styles.td}>
+                                    <input className={styles.input} name='region' />
+                                </td>
+                            </tr>
                         </table>
-                        
-                        <div className={styles.find}>
-                            <Button
-                                className={styles.find__btn}
-                                onClick={() => navigate('/findId')}
-                                text='아이디 찾기'
-                                width='110px'
-                                height='40px'
-                                color='#000'
-                                background='none'
-                            /> | 
-                            <Button
-                                className={styles.find__btn}
-                                text='비밀번호 찾기'
-                                onClick={() => navigate('/findPwd')}
-                                width='120px'
-                                height='40px'
-                                color='#000'
-                                background='#none'
-                            />
-                        </div>
 
                         <Button
                             className={styles.memBtn} 
-                            text='로그인' 
+                            text='회원가입' 
                             type='submit'
                             width='100px'
                             height='45px'
@@ -73,8 +97,8 @@ const LoginPage = () => {
                         />
                         <Button
                             className={styles.memBtn}
-                            text='회원가입' 
-                            onClick={() => navigate('/signup')} 
+                            text='로그인' 
+                            onClick={() => navigate('/login')} 
                             width='100px'
                             height='45px'
                             color='#000'
@@ -87,4 +111,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage;
+export default SignupPage;
