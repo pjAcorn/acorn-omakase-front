@@ -1,22 +1,13 @@
-import LabelBasicInput from '../../components/LabelBasicInput';
 import { useState, SyntheticEvent, useCallback, useEffect, JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal } from 'react';
 import API from '../../API/API';
-import axios from 'axios';
 import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
-import { Link } from 'react-router-dom';
-import Label from '../../components/styled-components/Label';
+import { Link, useNavigate } from 'react-router-dom';
+import Paging from './Paging/Paging';
 
-interface PostFormData {
-    title: string,
-    content: string,
-    nickname: string,
-    created_at: string
-
-}
 
 const PostPage = () => {
-
+    const navigate = useNavigate();
     const [postData, setPostData] = useState([]);
 
 
@@ -35,6 +26,13 @@ const PostPage = () => {
     const [page, setPage] = useState(1); //페이지
     const pageSize = 10; // posts가 보일 최대한의 갯수
     const offset = (page - 1) * pageSize; // 시작점과 끝점을 구하는 offset
+
+    const postsData = (posts) => {
+        if (posts) {
+            let result = posts.slice(offset, offset + pageSize);
+            return result;
+        }
+    }
 
     return (
         <div className={styles.main}>
@@ -59,20 +57,31 @@ const PostPage = () => {
                     color='#000'
                     background='#737373'
                 />
+                <Button
+                    text='글쓰기'
+                    width='80px'
+                    height='50px'
+                    color='#000'
+                    background='#D25959'
+                    onClick={() => navigate('/posts/new')}
+                />
             </form>
             <form className={styles.list}>
                 <table className={styles.table}>
                     <thead>
                         <tr>
-                          <Link to={`/posts`}>
-                            <th>최신순</th>
-                          </Link>
-                          <Link to={`/posts/view`}>
-                            <th>조회순</th>
-                          </Link>
-                          <Link to={`/posts/like`}>
-                            <th>좋아요순</th>
-                          </Link>  
+                            <Link to={`/posts`}>
+                                <th>최신순</th>
+                            </Link>
+                            <Link to={`/posts/view`}>
+                                <th>조회순</th>
+                            </Link>
+                            <Link to={`/posts/like`}>
+                                <th>좋아요순</th>
+                            </Link>
+                            <th>
+
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,6 +96,7 @@ const PostPage = () => {
                         ))}
                     </tbody>
                 </table>
+                <Paging page={page} count={pageSize} setPage={offset} />
             </form>
         </div >
     );
