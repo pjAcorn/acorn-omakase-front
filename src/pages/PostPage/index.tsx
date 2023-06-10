@@ -88,7 +88,7 @@ const PostPage = () => {
                         {postData.map((post) => (
                             <tr key={post.post_id}>
                                 <td>{post.nickname}</td>
-                                <Link to={`/posts/${post.post_id}`} className={styles.table}>
+                                <Link to={`/posts/${post.post_id}`} state={post.post_id} className={styles.table}>
                                     <td>{post.title}</td>
                                 </Link>
                                 <td>{post.created_at}</td>

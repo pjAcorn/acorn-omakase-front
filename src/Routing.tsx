@@ -6,7 +6,7 @@ import Header from './common/Header';
 import Footer from './common/Footer';
 import LoginPage from './pages/MemberPage/LoginPage';
 import SignupPage from './pages/MemberPage/SignupPage';
-import PostDetail from './pages/PostPage/PostDetail';
+import PostDetail from './pages/PostPage/PostDetail/PostDetail';
 import AnalyzePage from './pages/AnalyzePage'
 
 

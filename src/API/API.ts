@@ -15,6 +15,10 @@ interface ViewPostData {
     category: string;
 }
 
+interface GetPostId {
+    postId: string;
+  }
+
 
 const API = {
 
@@ -25,6 +29,11 @@ const API = {
     
     viewPost: async (): Promise<AxiosResponse> => {
         const response = await defaultInstance.get(`posts/newest`);
+        return response;
+    },
+
+    postDetail: async (data:GetPostId): Promise<AxiosResponse> => {
+        const response = await defaultInstance.get(`posts/${data.postId}`);
         return response;
     }
 }
