@@ -5,18 +5,14 @@ import Button from '../../components/styled-components/Button';
 import axios from 'axios'
 
 const AnalyzePage = () => {
-        
+    const SERVER_ANALYSIS_URL = "http://localhost:8000/test"
+
     const sendShopData = async (e) => {
         e.preventDefault();
-        // const loginId = e.target.id.value;
-        // const password = e.target.password.value;
-        // const passwordConf = e.target.passwordConf.value;
-        // const name = e.target.name.value;
-        // const nickname = e.target.nickname.value;
-        // const email = e.target.email.value;
-        // const region = e.target.region.value;
-        // await axios.post(SERVER_SIGNUP_URL, { loginId, password, passwordConf, name, nickname, email, region });
-        navigate('/')
+        const category = e.target.category.value;
+        const address = e.target.address.value;
+        await axios.post(SERVER_ANALYSIS_URL, { category, address });
+        // navigate('/')
     }
 
     useEffect(()=>{
@@ -36,60 +32,43 @@ const AnalyzePage = () => {
                 <form onSubmit={sendShopData}>
                     <table className={styles.inputTable}>
                         <tr> 
-                            <td rowSpan={4}>
-                                <div id="map" style={{width:"500px", height:"400px"}}></div> 
+                            <td className={styles.td__map} rowSpan={4} id="map" style={{width:"500px", height:"400px"}}>
                             </td>
                             <td className={styles.td}>
-                                <label>아이디</label>
-                            </td>
-                            <td className={styles.td}>
-                                <input className={styles.input} name='id' />
+                                <label>업종</label>
+                                <input className={styles.input} name='category' />
                             </td>
                         </tr>
                         <tr>
                             <td className={styles.td}>
-                                <label>비밀번호</label>
-                            </td>
-                            <td className={styles.td}>
-                                <input className={styles.input} name='password' type='password' />
+                                <label>주소</label>
+                                <input className={styles.input} name='address' />
                             </td>
                         </tr>
                         <tr>
                             <td className={styles.td}>
-                                <label>비밀번호 확인</label>
-                            </td>
-                            <td className={styles.td}>
-                                <input className={styles.input} name='passwordConf' type='password' />
+                                <Button
+                                    className={styles.memBtn} 
+                                    text='검색' 
+                                    type='submit'
+                                    width='100px'
+                                    height='45px'
+                                    color='#000'
+                                    background='#D25959'
+                                />
                             </td>
                         </tr>
                         <tr> 
                             <td className={styles.td}>
-                                <label>이름</label>
-                            </td>
-                            <td className={styles.td}>
-                                <input className={styles.input} name='name' />
+                                <div className={styles.Frame}>
+                                    oo동의 oo 점포<br/>
+                                    유동 인구는 oo이며<br/>
+                                    oo 점포 수는 oo개이고<br/>
+                                    상권 전체 대비 포화/여유 상태입니다.<br/>
+                                </div>
                             </td>
                         </tr>
                     </table>
-
-                    <Button
-                        className={styles.memBtn} 
-                        text='회원가입' 
-                        type='submit'
-                        width='100px'
-                        height='45px'
-                        color='#000'
-                        background='#D25959'
-                    />
-                    <Button
-                        className={styles.memBtn}
-                        text='로그인' 
-                        onClick={() => navigate('/login')} 
-                        width='100px'
-                        height='45px'
-                        color='#000'
-                        background='#D25959'
-                    />
                 </form>
             </div>
         </div>
