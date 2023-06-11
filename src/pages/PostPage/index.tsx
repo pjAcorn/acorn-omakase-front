@@ -63,7 +63,7 @@ const PostPage = () => {
                     height='50px'
                     color='#000'
                     background='#D25959'
-                    onClick={() => navigate('/posts/new')}
+                    onClick={() => navigate('/posts/create')}
                 />
             </form>
             <form className={styles.list}>

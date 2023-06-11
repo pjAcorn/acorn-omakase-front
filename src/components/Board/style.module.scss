@@ -1,0 +1,42 @@
+@import '../../sass/abstracts/mixins';
+@import '../../main.scss';
+
+.Mains {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    // border-bottom: 1px solid #aabbaa;
+    
+    .left { border-right: solid 1px #aabbaa; }
+    .right { border-left: solid 1px #aabbaa; }
+}
+
+.Write {
+    padding: 20px;
+    padding-left: 30px;
+    margin-top: 30px;
+    margin-left: 50px;
+    
+
+.title_txt {
+    width: 91%;
+    padding-bottom: 10px;
+    border: none;
+    font-size: 22px;
+    border-bottom: solid 1px #ababab;
+    font-weight: bold;
+}
+
+.content_txt {
+    width: 91%;
+    padding-top: 20px;
+    resize: none;
+    border: none;
+    font-size: 20px;
+    height: 450px
+}
+
+
+}
+
+.content_txt:focus { outline : none; }
+.title_txt:focus { outline : none; }

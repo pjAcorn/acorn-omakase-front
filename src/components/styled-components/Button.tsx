@@ -16,6 +16,7 @@ const Button = ({ text, className, onClick, type, background, color, width, heig
     <StyledButton
       className={className}
       onClick={onClick}
+      alert={alert}
       type={type}
       color={color}
       width={width}

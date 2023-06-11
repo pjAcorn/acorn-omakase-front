@@ -1,0 +1,43 @@
+@import '../../../sass/abstracts/mixins';
+@import '../../../main.scss';
+
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  
+    .top {
+      text-align: start;
+      color: #fffdfd;
+      margin: 0;
+      width: 100%;
+      padding: 40px;
+      background-color: #D25959;
+      flex-direction: column;
+  
+      .h1 {
+        display: flex;
+        padding-left: 55px;
+        background-color: #D25959;
+        width: 500px;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+      }
+  
+      .btext {
+        margin-top: 10px;
+        padding-left: 220px;
+        background-color: #737373;
+      }
+    }
+}
+
+.btn { 
+    padding-left: 60%; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+    }
+.btn2 { margin-left: 10px;}
