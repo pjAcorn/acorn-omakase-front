@@ -15,7 +15,6 @@ interface UserData {
     refreshToken: string;
   }
 
-// const SERVER_LOGIN_URL = 'http://localhost:8080/users/login'
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -38,13 +37,6 @@ const LoginPage = () => {
     },
     [inputs]
   );
-    // const sendLoginData = async (e) => {
-    //     e.preventDefault();
-    //     const loginId = e.target.id.value;
-    //     const password = e.target.password.value;
-    //     await axios.post(SERVER_LOGIN_URL, { loginId, password });
-    //     navigate('/main')
-    // }
 
      // login action
   const onClickLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -76,66 +68,6 @@ const LoginPage = () => {
             <div className={styles.Frame}>
                 <DesktopLogo />
                 <div>
-                   {/* <form onSubmit={onClickLogin}>
-                        <table className={styles.inputTable}>
-                            <tr> 
-                                <td className={styles.td}>
-                                    <label>아이디</label>
-                                </td>
-                                <td className={styles.td}>
-                                    <input className={styles.input} name='id' />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className={styles.td}>
-                                    <label>비밀번호</label>
-                                </td>
-                                <td className={styles.td}>
-                                    <input className={styles.input} name='password' type='password' />
-                                </td>
-                            </tr>
-                        </table>
-                        
-                        <div className={styles.find}>
-                            <Button
-                                className={styles.find__btn}
-                                onClick={() => navigate('/findId')}
-                                text='아이디 찾기'
-                                width='110px'
-                                height='40px'
-                                color='#000'
-                                background='none'
-                            /> | 
-                            <Button
-                                className={styles.find__btn}
-                                text='비밀번호 찾기'
-                                onClick={() => navigate('/findPwd')}
-                                width='120px'
-                                height='40px'
-                                color='#000'
-                                background='#none'
-                            />
-                        </div>
-
-                        <Button
-                            className={styles.memBtn} 
-                            text='로그인' 
-                            type='submit'
-                            width='100px'
-                            height='45px'
-                            color='#000'
-                            background='#D25959'
-                        />
-                        <Button
-                            className={styles.memBtn}
-                            text='회원가입' 
-                            onClick={() => navigate('/signup')} 
-                            width='100px'
-                            height='45px'
-                            color='#000'
-                            background='#D25959'
-                        />
-                    </form>  */}
                     <form>
                     <LabelBasicInput
                       label='loginId'
@@ -145,7 +77,7 @@ const LoginPage = () => {
                       type='text'
                       value={loginId}
                       onChange={onChange}
-
+                      placeholder='아이디'
                     />
                     <LabelBasicInput
                       label='password'
@@ -155,18 +87,22 @@ const LoginPage = () => {
                       type='password'
                       value={password}
                       onChange={onChange}
-
+                      placeholder='비밀번호'
                     />
-                    <Button text='로그인' onClick={onClickLogin} />
+                    <div className={styles.button}>
+                    <Button text='로그인' onClick={onClickLogin} 
+                            background='#D25959'
+                            width='100px' />
+                    <Button text='회원가입' onClick={() => navigate('/signup')}  
+                            background='#737373'
+                            width='100px' />
+                    </div>
                     <div className={styles.support}>
                       <Link to='/findid' style={{ textDecoration: 'none' }}>
-                        아이디 찾기
+                        아이디 찾기　
                       </Link>
                       <Link to='/findpw' style={{ textDecoration: 'none' }}>
-                        비밀번호 찾기
-                      </Link>
-                      <Link to='/signup' style={{ textDecoration: 'none' }}>
-                        회원가입 하기
+                         비밀번호 찾기
                       </Link>
                     </div>
                   </form>

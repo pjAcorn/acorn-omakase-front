@@ -9,14 +9,16 @@ interface ButtonProps {
   color?: string;
   width?: string;
   height?: string;
+  img?: string;
 }
 
-const Button = ({ text, className, onClick, type, background, color, width, height }: ButtonProps) => {
+const Button = ({ text, className, onClick, type, background, color, width, height, img }: ButtonProps) => {
   return (
     <StyledButton
       className={className}
       onClick={onClick}
       alert={alert}
+      img={img}
       type={type}
       color={color}
       width={width}
@@ -47,6 +49,8 @@ const StyledButton = styled.button<Omit<ButtonProps, 'text' | 'onClick'>>`
   cursor: pointer;
   padding-left: 1rem;
   padding-right: 1rem;
+  margin-left: 10px;
+  margin-right: 10px;
 
   /*크기*/
   width: ${(props) => props.width};

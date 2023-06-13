@@ -21,10 +21,33 @@
     margin: 0 auto;
     padding-top: 30px;
     width: 30%;
-    height: 300px;
+    height: 350px;
     text-align: center;
     background-color: #F7CFCF;
     border-radius: 30px;
+}
+
+.textfild {
+    padding-top: 10px;
+}
+
+.button {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.support {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    text-align:justify;
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+.Link {
+    display: flex;
+    justify-content: space-between;
 }
 
 .inputTable {

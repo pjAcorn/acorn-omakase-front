@@ -46,6 +46,8 @@ const StyledInput = styled.input<Pick<InputProps, 'hasError'>>`
   height: 48px;
   padding: 0 10px;
   margin: 5px 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 5px;
   outline: none;
   border: 1px solid ${(props) => (props.hasError ? '#bf0b0b' : '#D9D9D9')};
