@@ -1,12 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { defaultInstance, AuthTokenInstance } from './customAPI';
 
-interface NewPostData {
-    title: string;
-    content: string;
-    userId: string;
-    category: string;
-}
 
 interface ViewPostData {
     title: string;
@@ -19,10 +13,16 @@ interface GetPostId {
     postId: string;
   }
 
+interface CreatePostData {
+    title: string;
+    content: string;
+    userId: string;
+    category: string;
+}
 
 const API = {
 
-    newPost: async (data: NewPostData): Promise<AxiosResponse> => {
+    createPost: async (data: CreatePostData): Promise<AxiosResponse> => {
         const response = await defaultInstance.post(`posts/new`, data);
         return response;
     },

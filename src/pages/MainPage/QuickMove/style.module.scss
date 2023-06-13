@@ -2,26 +2,33 @@
 @import '../../../main.scss';
 
 
-.Button{
-  position: absolute;
-  border: 1px solid #fff;
-  border-radius: 8px;
-  background-color: #fff;
+.button{
+  display: flex;
   float: right;
   margin: 50px;
+  padding-top: 10px;
   top: 0;
+  margin-bottom: 150px;
   justify-content: space-between;
   flex-direction: column;
+
+
 }
 
-.Button2{
-  position: absolute;
-  border: 1px solid #fff;
-  border-radius: 8px;
-  background-color: #fff;
-  float: right;
-  top: 110px;
-  margin: 50px;
-  justify-content: space-between;
-  flex-direction: column;
+.image {
+  width: 200px;
+  height: 200px;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: white;
+		cursor: pointer;
+    top: -180px;
+    left: -40px;
+		&:after {
+			top: -180px;
+			left: -40px;
+		}
+  }
 }
+

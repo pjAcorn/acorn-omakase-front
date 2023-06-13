@@ -14,13 +14,20 @@ const Board = () => {
 
             <div className={styles.Write}>
                 <div>
-                    <input type='text' className={styles.title_txt} placeholder='제목'/>
+                    <input type='text'
+                        className={styles.title_txt}
+                        name='title'
+                        placeholder='제목' />
                 </div>
 
                 <div>
-                    <textarea className={styles.content_txt} placeholder='내용을 입력하세요.'> </textarea>
+                    <textarea
+                        className={styles.content_txt}
+                        name='content'
+                        placeholder='내용을 입력하세요.'>
+                    </textarea>
                 </div>
-                
+
             </div>
 
             <div className={styles.right}>
