@@ -1,27 +1,82 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useCallback } from 'react';
 import styles from './style.module.scss';
 import DesktopLogo from '../../../assets/TextLogo';
 import Button from '../../../components/styled-components/Button';
-import axios from 'axios'
+import LabelBasicInput from '../../../components/LabelBasicInput';
+import API from '../../../API/API';
+import { AxiosResponse } from 'axios'
 
-const SERVER_LOGIN_URL = 'http://localhost:8080/users/login'
+interface UserData {
+    accessToken: string;
+    accessTokenExpiresIn: number;
+    id: number;
+    nickname: string;
+    refreshToken: string;
+  }
+
+// const SERVER_LOGIN_URL = 'http://localhost:8080/users/login'
 
 const LoginPage = () => {
-    const sendLoginData = async (e) => {
-        e.preventDefault();
-        const loginId = e.target.id.value;
-        const password = e.target.password.value;
-        await axios.post(SERVER_LOGIN_URL, { loginId, password });
-        navigate('/main')
-    }
-
     const navigate = useNavigate();
+
+    const [inputs, setInputs] = useState({
+        loginId: '',
+        password: '',
+      });
+      const { loginId, password } = inputs;
+
+
+    // LoginId, password Change Event
+  const onChange = useCallback(
+    (e: { target: { name: string; value: string } }) => {
+      const { name, value } = e.target;
+      setInputs({
+        ...inputs,
+        [name]: value,
+      });
+    },
+    [inputs]
+  );
+    // const sendLoginData = async (e) => {
+    //     e.preventDefault();
+    //     const loginId = e.target.id.value;
+    //     const password = e.target.password.value;
+    //     await axios.post(SERVER_LOGIN_URL, { loginId, password });
+    //     navigate('/main')
+    // }
+
+     // login action
+  const onClickLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    handleSubmit();
+  };
+
+  // handleSubmit
+  const handleSubmit = async () => {
+    const data = { loginId, password };
+      const response = await API.logIn(data);
+      setLocalstorage(response);
+      navigate('/');
+    }
+  
+
+    // Set localstorage
+    const setLocalstorage = (response: AxiosResponse<UserData>) => {
+        const { accessToken, accessTokenExpiresIn, id, nickname, refreshToken } = response.data;
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('accessTokenExpiresIn', String(accessTokenExpiresIn));
+        localStorage.setItem('id', String(id));
+        localStorage.setItem('nickname', nickname);
+        localStorage.setItem('refreshToken', refreshToken);
+    };
+
     return (
         <div className={styles.Container}>
             <div className={styles.Frame}>
                 <DesktopLogo />
                 <div>
-                    <form onSubmit={sendLoginData}>
+                   {/* <form onSubmit={onClickLogin}>
                         <table className={styles.inputTable}>
                             <tr> 
                                 <td className={styles.td}>
@@ -80,11 +135,44 @@ const LoginPage = () => {
                             color='#000'
                             background='#D25959'
                         />
-                    </form>
+                    </form>  */}
+                    <form>
+                    <LabelBasicInput
+                      label='loginId'
+                      text='아이디'
+                      name='loginId'
+                      id='loginId'
+                      type='text'
+                      value={loginId}
+                      onChange={onChange}
+
+                    />
+                    <LabelBasicInput
+                      label='password'
+                      text='비밀번호'
+                      name='password'
+                      id='password'
+                      type='password'
+                      value={password}
+                      onChange={onChange}
+
+                    />
+                    <Button text='로그인' onClick={onClickLogin} />
+                    <div className={styles.support}>
+                      <Link to='/findid' style={{ textDecoration: 'none' }}>
+                        아이디 찾기
+                      </Link>
+                      <Link to='/findpw' style={{ textDecoration: 'none' }}>
+                        비밀번호 찾기
+                      </Link>
+                      <Link to='/signup' style={{ textDecoration: 'none' }}>
+                        회원가입 하기
+                      </Link>
+                    </div>
+                  </form>
                 </div>
             </div>
         </div>
-    )
-}
-
+    );
+};
 export default LoginPage;

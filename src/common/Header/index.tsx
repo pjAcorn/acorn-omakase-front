@@ -6,7 +6,7 @@ import ListIcon from '../../assets/ListIcon';
 // import SidebarLogin from '../../components/Sidebar/SidebarLogin';
 import SidebarLogout from '../../components/Sidebar/SidebarLogout';
 import HeaderLogout from './HeaderLogout';
-// import HeaderLogin from './HeaderLogin';
+import LoginHeader from './LoginHeader';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const Header = () => {
         </button>
         <div className={styles.Header__nav__right}>
           {/* <ModeToggle /> */}
-          {/* {isLoginUser ? <HeaderLogin /> : ''} */}
+          {isLoginUser ? <LoginHeader /> : ''}
           {!isLoginUser ? <HeaderLogout /> : ''}
         </div>
       </section>
