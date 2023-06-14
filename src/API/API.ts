@@ -20,7 +20,6 @@ interface GetPostId {
 interface CreatePostData {
     title: string;
     content: string;
-    userId: string;
     category: string;
 }
 
@@ -32,7 +31,7 @@ const API = {
       },
 
     createPost: async (data: CreatePostData): Promise<AxiosResponse> => {
-        const response = await defaultInstance.post(`posts/new`, data);
+        const response = await AuthTokenInstance.post(`posts/new`, data);
         return response;
     },
     

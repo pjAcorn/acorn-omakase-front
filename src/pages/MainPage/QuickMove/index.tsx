@@ -25,6 +25,7 @@ const QuickMove = () => {
       </button>
       </div>
     </header>
+    
   );
 };
 
