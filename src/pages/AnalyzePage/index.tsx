@@ -5,7 +5,8 @@ import Button from '../../components/styled-components/Button';
 import axios from 'axios'
 
 const AnalyzePage = () => {
-    const SERVER_ANALYSIS_URL = "http://localhost:8000/test"
+    const SERVER_ANALYSIS_URL = "http://localhost:8080/analyze/test"
+    // const SERVER_ANALYSIS_URL = "http://localhost:8000/test"
 
     const sendShopData = async (e) => {
         e.preventDefault();
