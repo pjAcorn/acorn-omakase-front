@@ -23,6 +23,11 @@ interface CreatePostData {
     category: string;
 }
 
+interface CreateCommentData {
+    commentContent: string;
+    postId: string;
+}
+
 const API = {
 
     logIn: async (data: LoginData): Promise<AxiosResponse> => {
@@ -35,13 +40,18 @@ const API = {
         return response;
     },
     
+    createComment: async (data: CreateCommentData): Promise<AxiosResponse> => {
+        const response = await AuthTokenInstance.post(`comment/new`, data);
+        return response;
+    },
+    
     viewPost: async (): Promise<AxiosResponse> => {
         const response = await defaultInstance.get(`posts/newest`);
         return response;
     },
 
     postDetail: async (data:GetPostId): Promise<AxiosResponse> => {
-        const response = await defaultInstance.get(`posts/${data.postId}`);
+        const response = await AuthTokenInstance.get(`posts/${data.postId}`);
         return response;
     }
 }

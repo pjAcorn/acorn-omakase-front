@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PersonIcon = () => {
+const PersonIconll = () => {
   return (
     <StyledPersonIcon className='PersonIcon'>
       <svg
@@ -27,6 +27,7 @@ const StyledPersonIcon = styled.span`
     width: 22px;
     height: 22px;
     cursor: pointer;
+    padding: 3px;
   }
 `;
-export default PersonIcon;
+export default PersonIconll;

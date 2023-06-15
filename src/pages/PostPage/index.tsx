@@ -1,9 +1,10 @@
-import { useState, SyntheticEvent, useCallback, useEffect, JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal } from 'react';
+import { useState, useEffect, ChangeEvent,  } from 'react';
 import API from '../../API/API';
 import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import Paging from './Paging/Paging';
+import SearchBasicInput from '../../components/SearchBasicInput';
 
 
 const PostPage = () => {
@@ -49,7 +50,16 @@ const PostPage = () => {
                         <a href='/posts/item'>중고거래</a>
                     </li>
                 </ul>
-                <input className={styles.label} name='search' />
+                <SearchBasicInput                    
+                    name='search' 
+                    id={''} 
+                    type={''} 
+                    value={''} 
+                    placeholder='제목으로 검색'
+                    onChange={function (e: ChangeEvent<HTMLInputElement>): void {
+                        throw new Error('Function not implemented.');
+                    } }               
+                />
                 <Button
                     text='검색'
                     width='75px'

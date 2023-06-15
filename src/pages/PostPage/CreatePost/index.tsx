@@ -1,6 +1,3 @@
-import { useState, useEffect } from 'react';
-import { redirect, useLocation, useNavigate } from 'react-router-dom';
-import API from '../../../API/API';
 import styles from './style.module.scss';
 import Board from '../../../components/Board';
 
