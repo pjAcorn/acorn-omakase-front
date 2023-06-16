@@ -17,6 +17,8 @@
     background-color: #D25959;
     flex-direction: column;
 
+    
+
     .h1 {
       display: flex;
       padding-left: 55px;
@@ -40,7 +42,7 @@
     align-items: center;
     border: 0.0625rem solid #ef3b3b;
     border-radius: 8px;
-    margin: 10px;
+    margin: 20px;
     width: 68%;
     padding: 40px;
     background-color: #fff;
@@ -102,7 +104,7 @@
     border-radius: 8px;
     border: 1px solid #D25959;
     
-
+    
 
   }
   .table {
@@ -123,6 +125,13 @@
       }
     }
   }
+}
+.links {
+  margin: 10px;
+  padding: 10px;
+}
 
-
+.input {
+  height: 40px;
+  width: 70%;
 }

@@ -129,9 +129,9 @@ const PostDetail = () => {
                             <li>
                                 <div>
                                     <PersonIconll />
-                                    {comment.nickname} {comment.created_at}
+                                    {comment.nickname} 　 {comment.created_at}
                                 </div>
-                                <div className={styles.content}>
+                                <div className={styles.commentContent}>
                                     {comment.comment_content}
                                 </div>
                             </li>

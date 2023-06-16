@@ -28,6 +28,10 @@ interface CreateCommentData {
     postId: string;
 }
 
+interface GetPostByName {
+    keyword: string;
+}
+
 const API = {
 
     logIn: async (data: LoginData): Promise<AxiosResponse> => {
@@ -53,7 +57,12 @@ const API = {
     postDetail: async (data:GetPostId): Promise<AxiosResponse> => {
         const response = await AuthTokenInstance.get(`posts/${data.postId}`);
         return response;
-    }
+    },
+
+    viewPostByName: async (data:GetPostByName): Promise<AxiosResponse> => {
+        const response = await defaultInstance.post(`posts/search/${data.keyword}`, data);
+        return response;
+    },
 }
 
 
