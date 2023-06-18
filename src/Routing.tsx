@@ -9,6 +9,7 @@ import SignupPage from './pages/MemberPage/SignupPage';
 import PostDetail from './pages/PostPage/PostDetail/PostDetail';
 import AnalyzePage from './pages/AnalyzePage'
 import CreatePost from './pages/PostPage/CreatePost';
+import SearchByKeyword from './components/SearchByKeyword';
 
 
 const Routing: React.FC = (): JSX.Element => (
@@ -19,6 +20,7 @@ const Routing: React.FC = (): JSX.Element => (
       <Route path='/posts' element={<PostPage />} />
       <Route path='/posts/:idx' element={<PostDetail />} />
       <Route path='/posts/create' element={<CreatePost />}/>
+      <Route path='/posts/search/keyword' element={<SearchByKeyword />} />
       <Route path='/login' element={<LoginPage />} />
       <Route path='/signup' element={<SignupPage />} /> 
       <Route path='/analyze' element={<AnalyzePage />} /> 

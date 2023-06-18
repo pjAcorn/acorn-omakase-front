@@ -60,7 +60,7 @@ const API = {
     },
 
     viewPostByName: async (data:GetPostByName): Promise<AxiosResponse> => {
-        const response = await defaultInstance.post(`posts/search/${data.keyword}`, data);
+        const response = await defaultInstance.post(`posts/search/keyword`, data);
         return response;
     },
 }

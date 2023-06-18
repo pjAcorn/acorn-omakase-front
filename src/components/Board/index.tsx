@@ -59,6 +59,7 @@ const Board = () => {
                     error.message = '게시글 등록에 실패하였습니다.';
                     // eslint-disable-next-line no-alert
                     alert(error.message);
+                    window.location.replace('/post');
                 }
             });
     };

@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import API from '../../../API/API';
 import styles from './style.module.scss';
 import Button from '../../../components/styled-components/Button';
-import CommentBasicInput from '../../../components/CommentBasicInput';
 import PersonIconll from '../../../assets/PersonIconll';
 
 interface PostDetailData {
@@ -47,12 +46,13 @@ const PostDetail = () => {
                 if (res.data.code === 'Created') {
                     // eslint-disable-next-line no-alert
                     alert('댓글이 등록되었습니다.');
-                    window.location.replace('/post');
+                    window.location.replace(`/posts/${postId}`);
                 }
             })
             .catch((error) => {
                 if (error.code === 'ERR_BAD_REQUEST') {
                     error.message = '게시글 등록에 실패하였습니다.';
+                    window.location.replace(`/posts/${postId}`);
                     // eslint-disable-next-line no-alert
                     alert(error.message);
                 }

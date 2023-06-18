@@ -3,23 +3,12 @@ import API from '../../API/API';
 import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import Paging from './Paging/Paging';
+import Paging from '../../pages/PostPage/Paging/Paging';
 
-
-const PostPage = () => {
+const SearchByKeyword = () => {
     const navigate = useNavigate();
-    const [postData, setPostData] = useState([]);
     const [keyword, setKeyword] = useState<string>('');
-
-    useEffect(() => {
-        const getPosts = async () => {
-            const response = await API.viewPost();
-            const postList = response.data.list;
-            setPostData(postList);
-            console.log(postList);
-        };
-        getPosts();
-    }, []);
+    const [postData, setPostData] = useState([]);
 
     const onChangeByName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setKeyword(e.target.value);
@@ -27,13 +16,13 @@ const PostPage = () => {
     };
 
     const onCreateHandler = () => {
-        const data = {keyword,};
+        const data = { keyword, };
         const response = API.viewPostByName(data);
         console.log(data);
         response
             .then((res) => {
-                setPostData(res.data.list);    
-                console.log(res.data.list);   
+                setPostData(res.data.list);
+                console.log(res.data.list)
             })
             .catch((error) => {
                 if (error.code === 'ERR_BAD_REQUEST') {
@@ -139,6 +128,6 @@ const PostPage = () => {
             </form>
         </div >
     );
-};
+}
 
-export default PostPage;
+export default SearchByKeyword;
