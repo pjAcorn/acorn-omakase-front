@@ -13,19 +13,24 @@
 }
 
 .Container {
-    padding-top: 100px;
-    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+
+    .Frame {
+        flex-direction: column;
+        margin: 10px;
+        padding: 35px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        width: 25%;
+        height: 80%px;
+        text-align: center;
+        background-color: #F7CFCF;
+        border-radius: 30px;
+    }
 }
 
-.Frame {
-    margin: 0 auto;
-    padding-top: 30px;
-    width: 30%;
-    height: 350px;
-    text-align: center;
-    background-color: #F7CFCF;
-    border-radius: 30px;
-}
+
 
 .textfild {
     padding-top: 10px;

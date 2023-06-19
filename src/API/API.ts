@@ -1,10 +1,27 @@
 import { AxiosResponse } from 'axios';
 import { defaultInstance, AuthTokenInstance } from './customAPI';
 
+interface SignUpData {
+    loginId: string;
+    nickname: string;
+    password: string;
+    email: string;
+    name: string;
+    region: string;
+  }
+
 interface LoginData {
     loginId: string;
     password: string;
   }
+
+interface CheckIdData {
+loginId: string;
+    }
+
+interface CheckEmailData {
+email: string;
+}
 
 interface ViewPostData {
     title: string;
@@ -38,6 +55,21 @@ interface PageData {
 }
 const API = {
 
+    signUp: async (data: SignUpData): Promise<AxiosResponse> => {
+        const response = await defaultInstance.post(`users/signup`, data);
+        return response;
+    },
+
+    checkId: async (loginId: CheckIdData): Promise<AxiosResponse> => {
+        const response = await defaultInstance.post(`users/signup/id`, loginId);
+        return response;
+    },
+
+    checkEmail: async (email: CheckEmailData): Promise<AxiosResponse> => {
+        const response = await defaultInstance.post(`users/signup/email`, email);
+        return response;
+    },
+
     logIn: async (data: LoginData): Promise<AxiosResponse> => {
         const response = await defaultInstance.post(`users/login`, data);
         return response;
@@ -55,7 +87,8 @@ const API = {
     
     viewPost: async (data: PageData): Promise<AxiosResponse> => {
         const response = await defaultInstance.get(
-            `posts/newest?pageSize=${data.postPerPage}&limit=${data.currentPage}`);
+            `posts/newest?pageSize=${data.postPerPage}&pageNum=${data.currentPage}`);
+            console.log(response);
         return response;
     },
 
@@ -63,11 +96,6 @@ const API = {
         const response = await AuthTokenInstance.get(`posts/${data.postId}`);
         return response;
     },
-
-    // viewPostsByViewed: async (): Promise<AxiosResponse> => {
-    //     const response = await defaultInstance.get(`posts/newest?pageNum=${data.limit}&pageSize=${data.page}`);
-    //     return response;
-    // },
 
     viewPostByName: async (data:GetPostByName): Promise<AxiosResponse> => {
         const response = await defaultInstance.post(`posts/search/keyword`, data);

@@ -36,8 +36,10 @@ const PostPage = () => {
         getPosts();
     }, []);
 
-    const setPage = (e) => {
+
+    const setPage = (e: any) => {
         setCurrentPage(e);
+        console.log(currentPage);
       };
 
     const onChangeByName = (e: React.ChangeEvent<HTMLInputElement>) => {
