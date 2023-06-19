@@ -32,6 +32,10 @@ interface GetPostByName {
     keyword: string;
 }
 
+interface PageData {
+    currentPage: number;
+    postPerPage: number;
+}
 const API = {
 
     logIn: async (data: LoginData): Promise<AxiosResponse> => {
@@ -49,8 +53,9 @@ const API = {
         return response;
     },
     
-    viewPost: async (): Promise<AxiosResponse> => {
-        const response = await defaultInstance.get(`posts/newest`);
+    viewPost: async (data: PageData): Promise<AxiosResponse> => {
+        const response = await defaultInstance.get(
+            `posts/newest?pageSize=${data.postPerPage}&limit=${data.currentPage}`);
         return response;
     },
 
@@ -58,6 +63,11 @@ const API = {
         const response = await AuthTokenInstance.get(`posts/${data.postId}`);
         return response;
     },
+
+    // viewPostsByViewed: async (): Promise<AxiosResponse> => {
+    //     const response = await defaultInstance.get(`posts/newest?pageNum=${data.limit}&pageSize=${data.page}`);
+    //     return response;
+    // },
 
     viewPostByName: async (data:GetPostByName): Promise<AxiosResponse> => {
         const response = await defaultInstance.post(`posts/search/keyword`, data);

@@ -1,30 +1,49 @@
-import { useState, useEffect, ChangeEvent, } from 'react';
+import { useState, useEffect, ChangeEvent, useCallback, } from 'react';
 import API from '../../API/API';
 import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import Paging from './Paging/Paging';
+import Paging from '../../components/Paging';
 
 
 const PostPage = () => {
     const navigate = useNavigate();
     const [postData, setPostData] = useState([]);
     const [keyword, setKeyword] = useState<string>('');
+    const [count, setCount] = useState(0); // 아이템 총 개수
+    const [currentPage, setCurrentPage] = useState(1); // 현재 페이지. default 값으로 1
+    const [postPerPage] = useState(10); // 한 페이지에 보여질 아이템 수 
+    const [indexOfLastPost, setIndexOfLastPost] = useState(0); // 현재 페이지의 마지막 아이템 인덱스
+    const [indexOfFirstPost, setIndexOfFirstPost] = useState(0); // 현재 페이지의 첫번째 아이템 인덱스
+    const [currentPosts, setCurrentPosts] = useState(0); // 현재 페이지에서 보여지는 아이템들
 
-    useEffect(() => {
+
+    useEffect(() => {        
+        const data = {
+            currentPage,
+            postPerPage,
+        };
         const getPosts = async () => {
-            const response = await API.viewPost();
+            const response = await API.viewPost(data);
             const postList = response.data.list;
             setPostData(postList);
             console.log(postList);
+            setCount(postList.length);
+            setIndexOfLastPost(currentPage * postPerPage);
+            setIndexOfFirstPost(indexOfLastPost - postPerPage);
+            setCurrentPosts(postList.slice(indexOfFirstPost, indexOfLastPost));
         };
         getPosts();
     }, []);
 
+    const setPage = (e) => {
+        setCurrentPage(e);
+      };
+
     const onChangeByName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setKeyword(e.target.value);
-        console.log(e.currentTarget.value)
+        setKeyword(e.currentTarget.value);
     };
+
 
     const onCreateHandler = () => {
         const data = {keyword,};
@@ -44,16 +63,9 @@ const PostPage = () => {
             });
     };
 
-    const [page, setPage] = useState(1); //페이지
-    const pageSize = 10; // posts가 보일 최대한의 갯수
-    const offset = (page - 1) * pageSize; // 시작점과 끝점을 구하는 offset
+    
 
-    const postsData = (posts) => {
-        if (posts) {
-            let result = posts.slice(offset, offset + pageSize);
-            return result;
-        }
-    }
+    
 
     return (
         <div className={styles.main}>
@@ -83,6 +95,7 @@ const PostPage = () => {
                     width='75px'
                     height='50px'
                     color='#000'
+                    value={keyword}
                     background='#737373'
                     onClick={onCreateHandler}
                 />
@@ -135,7 +148,7 @@ const PostPage = () => {
                         ))}
                     </tbody>
                 </table>
-                <Paging page={page} count={pageSize} setPage={offset} />
+                <Paging page={currentPage} count={count} setPage={setPage} />
             </form>
         </div >
     );

@@ -3,19 +3,15 @@ import API from '../../API/API';
 import Button from '../../components/styled-components/Button';
 import styles from './style.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import Paging from '../../pages/PostPage/Paging/Paging';
+import Paging from '../Paging';
 
 const SearchByKeyword = () => {
     const navigate = useNavigate();
-    const [keyword, setKeyword] = useState<string>('');
     const [postData, setPostData] = useState([]);
+    const [keyword, setKeyword] = useState<string>('');
 
-    const onChangeByName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setKeyword(e.target.value);
-        console.log(e.currentTarget.value)
-    };
-
-    const onCreateHandler = () => {
+    useEffect (() => {
+        const getPosts = async () => {
         const data = { keyword, };
         const response = API.viewPostByName(data);
         console.log(data);
@@ -31,7 +27,9 @@ const SearchByKeyword = () => {
                     alert(error.message);
                 }
             });
-    };
+        };
+        getPosts();
+    }, []);
 
     const [page, setPage] = useState(1); //페이지
     const pageSize = 10; // posts가 보일 최대한의 갯수
@@ -46,66 +44,6 @@ const SearchByKeyword = () => {
 
     return (
         <div className={styles.main}>
-            <form className={styles.top}>
-                <h1 className={styles.h1}>묻고 답해요</h1>
-                <div className={styles.btext}>맡김차림 회원 사장님들과 소통해봐요</div>
-            </form>
-            <form className={styles.PostForm}>
-                <ul className={styles.category}>카테고리
-                    <li className={styles.li}>
-                        <a href='/posts/free' style={{ textDecoration: "none" }}>자유게시판</a>
-                    </li>
-                    <li className={styles.li}>
-                        <a href='/posts/item' style={{ textDecoration: "none" }}>중고거래</a>
-                    </li>
-                </ul>
-                <input
-                    type='text'
-                    className={styles.input}
-                    name='search'
-                    placeholder='제목으로 검색'
-                    onChange={onChangeByName}
-                    
-                />
-                <Button
-                    text='검색'
-                    width='75px'
-                    height='50px'
-                    color='#000'
-                    background='#737373'
-                    onClick={onCreateHandler}
-                />
-                <Button
-                    text='글쓰기'
-                    width='80px'
-                    height='50px'
-                    color='#000'
-                    background='#D25959'
-                    onClick={() => navigate('/posts/create')}
-                />
-            </form>
-            <table>
-                <tr>
-                    <Link
-                        to={`/posts`}
-                        className={styles.links}
-                        style={{ textDecoration: "none" }}>
-                        <th>최신순</th>
-                    </Link>
-                    <Link
-                        to={`/posts/view`}
-                        className={styles.links}
-                        style={{ textDecoration: "none" }}>
-                        <th>조회순</th>
-                    </Link>
-                    <Link
-                        to={`/posts/like`}
-                        className={styles.links}
-                        style={{ textDecoration: "none" }}>
-                        <th>좋아요순</th>
-                    </Link>
-                </tr>
-            </table>
             <form className={styles.list}>
                 <table className={styles.table}>
                     <tbody>
