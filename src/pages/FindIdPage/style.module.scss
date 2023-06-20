@@ -1,0 +1,14 @@
+@import '../../sass/abstracts/mixins';
+@import '../../main.scss';
+
+.FindIdPage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 0;
+  height: 620px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: #fafafa;
+}
