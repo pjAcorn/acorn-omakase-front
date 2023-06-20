@@ -68,6 +68,14 @@ interface PageData {
     currentPage: number;
     postPerPage: number;
 }
+
+// 메인 기능
+interface ShopData {
+    addressSido: string;
+    addressSigungu: string;
+    category: string;
+}
+
 const API = {
 
     signUp: async (data: SignUpData): Promise<AxiosResponse> => {
@@ -131,6 +139,11 @@ const API = {
         const response = await defaultInstance.post(`posts/search/keyword`, data);
         return response;
     },
+
+    sendShopData: async (data: ShopData): Promise<AxiosResponse> => {
+        const response = await defaultInstance.post(`analyze/test`, data);
+        return response;
+    }
 }
 
 
