@@ -1,7 +1,9 @@
 .FormContainer {
-    position: relative;
+    position: static;
     display: inline;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    margin-top: 20px;
     width: 350px;
     .error {
       font-size: 13px;

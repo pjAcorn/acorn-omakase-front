@@ -15,6 +15,7 @@ import {
     PWCONFIRM_VALID_CHECK,
     EMAIL_REQUIRE_CHECK,
     MBTI_REQUIRE_CHECK,
+    NAME_REQUIRE_CHECK,
     EMAIL_VALID_CHECK,
     EMAIL_OVERLAP_CHECK,
 } from '../../../contants/message';
@@ -64,6 +65,7 @@ const SignupPage = () => {
     // Error Message
     const [loginIdErrorMessage, setLoginIdErrorMessage] = useState<string>(ID_REQUIRE_CHECK);
     const [nicknameErrorMessage] = useState<string>(NICKNAME_REQUIRE_CHECK);
+    const [nameErrorMessage] = useState<string>(NAME_REQUIRE_CHECK);
     const [passwordErrorMessage, setPasswordErrorMessage] = useState<string>(PW_REQUIRE_CHECK);
     const [passwordConfirmErrorMessage, setPasswordConfirmErrorMessage] =
         useState<string>(PWCONFIRM_REQUIRE_CHECK);
@@ -309,6 +311,19 @@ const SignupPage = () => {
                         hasError={isValidLoginId}
                         placeholder={ID_REQUIRE_CHECK}
                         errorMessage={loginIdErrorMessage}
+                    />
+                    <LabelBasicInput
+                        label='name'
+                        text='이름'
+                        name='name'
+                        id='name'
+                        type='text'
+                        value={name}
+                        onChange={onChangeName}
+                        onBlur={onBlurName}
+                        hasError={isValidName}
+                        placeholder={NAME_REQUIRE_CHECK}
+                        errorMessage={nameErrorMessage}
                     />
                     <LabelBasicInput
                         label='nickname'

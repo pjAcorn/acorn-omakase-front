@@ -8,19 +8,34 @@ interface SignUpData {
     email: string;
     name: string;
     region: string;
-  }
+}
 
 interface LoginData {
     loginId: string;
     password: string;
-  }
+}
 
 interface CheckIdData {
-loginId: string;
-    }
+    loginId: string;
+}
 
 interface CheckEmailData {
-email: string;
+    email: string;
+}
+
+interface CheckEmailCodeData {
+    email: string;
+}
+
+interface GetLoginIdData {
+    email: string;
+    code: string;
+}
+
+interface findPasswordData {
+    code: string;
+    email: string;
+    loginId: string;
 }
 
 interface ViewPostData {
@@ -32,7 +47,7 @@ interface ViewPostData {
 
 interface GetPostId {
     postId: string;
-  }
+}
 
 interface CreatePostData {
     title: string;
@@ -81,31 +96,46 @@ const API = {
     logIn: async (data: LoginData): Promise<AxiosResponse> => {
         const response = await defaultInstance.post(`users/login`, data);
         return response;
-      },
+    },
+
+    checkEmailCode: async (email: CheckEmailCodeData): Promise<AxiosResponse> => {
+        const response = await defaultInstance.post(`users/email`, email);
+        return response;
+    },
+
+    getLoginId: async (data: GetLoginIdData): Promise<AxiosResponse> => {
+        const response = await defaultInstance.post(`users/find/id`, data);
+        return response;
+    },
+
+    findPassword: async (data: findPasswordData): Promise<AxiosResponse> => {
+        const response = await defaultInstance.post(`users/find/password`, data);
+        return response;
+    },
 
     createPost: async (data: CreatePostData): Promise<AxiosResponse> => {
         const response = await AuthTokenInstance.post(`posts/new`, data);
         return response;
     },
-    
+
     createComment: async (data: CreateCommentData): Promise<AxiosResponse> => {
         const response = await AuthTokenInstance.post(`comment/new`, data);
         return response;
     },
-    
+
     viewPost: async (data: PageData): Promise<AxiosResponse> => {
         const response = await defaultInstance.get(
             `posts/newest?pageSize=${data.postPerPage}&pageNum=${data.currentPage}`);
-            console.log(response);
+        console.log(response);
         return response;
     },
 
-    postDetail: async (data:GetPostId): Promise<AxiosResponse> => {
+    postDetail: async (data: GetPostId): Promise<AxiosResponse> => {
         const response = await AuthTokenInstance.get(`posts/${data.postId}`);
         return response;
     },
 
-    viewPostByName: async (data:GetPostByName): Promise<AxiosResponse> => {
+    viewPostByName: async (data: GetPostByName): Promise<AxiosResponse> => {
         const response = await defaultInstance.post(`posts/search/keyword`, data);
         return response;
     },

@@ -1,5 +1,6 @@
 @import '../../../sass/abstracts/mixins';
 @import '../../../main.scss';
+
 @font-face {
     font-family: 'NanumSquareNeo-Variable';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
@@ -15,8 +16,9 @@
 .main {
     display: flex;
     justify-content: center;
-
-    .SignUpForm {    
+    padding-bottom: 30px;
+    
+    .SignUpForm {
         flex-direction: column;
         text-align: center;
         border: 0.0625rem solid #f2f2f2;
@@ -26,21 +28,22 @@
         margin-top: 40px;
         margin-bottom: 40px;
         background-color: #F7CFCF;
+
         .signup__btn {
-          text-align: center;
-          display: flex;
-            flex-direction:row;
-            margin-bottom: 30px;
-          &__prev {
-            color: #737377;
-            margin-top: 15px;
-          }
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+
+            &__prev {
+                color: #737377;
+                margin-top: 15px;
+            }
         }
-      }
+    }
 }
 
 
-  
-  .modal__text {
+
+.modal__text {
     margin-bottom: 20px;
-  }
+}

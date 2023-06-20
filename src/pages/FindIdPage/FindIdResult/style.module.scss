@@ -1,0 +1,61 @@
+@import '../../../sass/abstracts/mixins';
+@import '../../../main.scss';
+
+.FindIdResult {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 0;
+  height: 620px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: #fafafa;
+  &__wrap {
+    border: 0.0625rem solid #f2f2f2;
+    border-radius: 8px;
+    width: 414px;
+    padding: 40px;
+    background-color: #F7CFCF;
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+    &__info {
+      text-align: center;
+      strong {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      a {
+        font-size: 14px;
+        display: inline-block;
+        margin-top: 40px;
+        padding: 0 10px;
+      }
+    }
+  }
+  .support {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    a {
+      position: relative;
+      margin: 0 15px;
+      color: #737373;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        right: -15px;
+        height: 8px;
+        display: inline-block;
+        border: 1px solid #d9d9d9;
+      }
+      &:last-child::after {
+        display: none;
+      }
+    }
+  }
+}

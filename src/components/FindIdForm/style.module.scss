@@ -1,0 +1,31 @@
+@import '../../sass/abstracts/mixins';
+@import '../../main.scss';
+
+.FindIdForm {
+  border: 0.0625rem solid #f2f2f2;
+  border-radius: 8px;
+  width: 414px;
+  padding: 40px;
+  background-color: #F7CFCF;
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  .findid__loading {
+    text-align: center;
+    margin: 20px auto;
+  }
+  .findid__btn {
+    display: flex;
+    &__prev {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 50%;
+    }
+  }
+}
