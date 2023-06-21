@@ -73,8 +73,20 @@ interface PageData {
 interface ShopData {
     addressSido: string;
     addressSigungu: string;
-    category: string;
+    cateLData: string;
+    cateAData: string;
+    cateMData: string;
 }
+
+// interface ReceivedShopData {
+//     year1: number;
+//     year2: number;
+//     year3: number;
+//     year4: number;
+//     year5: number;
+//     sum: number;
+//     avg: number;
+// }
 
 const API = {
 
@@ -141,7 +153,7 @@ const API = {
     },
 
     sendShopData: async (data: ShopData): Promise<AxiosResponse> => {
-        const response = await defaultInstance.post(`analyze/test`, data);
+        const response = await defaultInstance.post(`analyze`, data);
         return response;
     }
 }
