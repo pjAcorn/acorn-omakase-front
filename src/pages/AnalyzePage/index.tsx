@@ -19,8 +19,23 @@ const cateLList = Object.keys(categoryJson);
 interface ShopData {
     addressSido: '',
     addressSigungu: '',
-    category: ''
+    cateLData: '',
+    cateAData: '',
+    cateMData: ''
 }
+
+interface receivedData {
+    year1: any,
+    year2: any,
+    year3: any,
+    year4: any,
+    year5: any,
+    sum: any,
+    avg: any,
+}
+
+let currentCateL;
+let currentCateA;
 
 const AnalyzePage = () => {
     /* 지역 선택 SelectBox */
@@ -75,47 +90,41 @@ const AnalyzePage = () => {
     const [categoryM, setCategoryM] = useState<string>(null);
     const [isValidCateM, setIsValidCateM] = useState<boolean>(false);
 
-    // const [currentCateL, setCurrentCateL] = useState<any>();
-    const [currentCateA, setCurrentCateA] = useState<any>();
-
-    let currentCateL = "";
-
     const onChangeCateL = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setCategoryL(e.currentTarget.value);
+        setCategoryA(cateAList[0])
+        setCategoryM(cateMList[0])
         if (e.currentTarget.value !== '1') {
             setIsValidCateL(false);
         }
         
         for (const c in cateLList) {
-            // setCurrentCateL(cateLList[c])
-            currentCateL = cateLList[c]
-            console.log(currentCateL)
+            currentCateL = cateLList[c];
             if (e.currentTarget.value == currentCateL) {
-                setCateAList(Object.keys(categoryJson[currentCateL][0]))
-                console.log("일치")
+                setCateAList(Object.keys(categoryJson[currentCateL][0]));
+                break;
             }
         }
 
-        // onSBChange(e);
+        onSBChange(e);
     };
 
     const onChangeCateA = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        currentCateA = ""
         setCategoryA(e.currentTarget.value);
         if (e.currentTarget.value !== '1') {
             setIsValidCateA(false);
         }
 
-        // if (e.currentTarget.value !== '업종대분류 선택') {
-            // for (const c in cateAList) {
-            //     setCurrentCateA(cateLList[c])
-    
-            //     if (e.currentTarget.value == currentCateA) {
-            //         setCateMList(Object.keys(categoryJson[currentCateL][0]));
-            //     }
-            // }
-        // }
+        for (const c in cateAList) {
+            currentCateA = cateAList[c];
+            
+            if (e.currentTarget.value == currentCateA) {
+                setCateMList(categoryJson[currentCateL][0][currentCateA]);
+            }
+        }
 
-        // onSBChange(e);
+        onSBChange(e);
     };
 
     const onChangeCateM = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -124,7 +133,7 @@ const AnalyzePage = () => {
             setIsValidCateM(false);
         }
 
-        // onSBChange(e);
+        onSBChange(e);
     };
 
 
@@ -133,10 +142,22 @@ const AnalyzePage = () => {
     const [shopData, setshopData] = useState<ShopData>({
         addressSido: '',
         addressSigungu: '',
-        category: ''
+        cateLData: '',
+        cateAData: '',
+        cateMData: ''
+    });
+
+    const [resultData, setResultData] = useState<receivedData>({
+            year1: 0,
+            year2: 0,
+            year3: 0,
+            year4: 0,
+            year5: 0,
+            sum: 0,
+            avg: 0,
     });
     
-    const { addressSido, addressSigungu, category } = shopData;
+    const { addressSido, addressSigungu, cateLData, cateAData, cateMData } = shopData;
 
     const onSBChange = useCallback(
         (e: { target: { name: string; value: string } }) => {
@@ -155,11 +176,26 @@ const AnalyzePage = () => {
     }
 
     const handleSubmit = async () => {
-        const data = { addressSido, addressSigungu, category };
+        const data = { addressSido, addressSigungu, cateLData, cateAData, cateMData };
         const response = await API.sendShopData(data);
-        console.log(response)
-    }
+        const responseJson = JSON.parse(response.data);
 
+        setResultData({
+            year1: Object.values(responseJson["1년 미만"])[0],
+            year2: Object.values(responseJson["1~2년"])[0],
+            year3: Object.values(responseJson["2~3년"])[0],
+            year4: Object.values(responseJson["3~5년"])[0],
+            year5: Object.values(responseJson["5년 이상"])[0],
+            sum: Object.values(responseJson["합계"])[0],
+            avg: Object.values(responseJson["평균"])[0]
+        })
+
+        const analyzeFrame = document.getElementsByClassName("AnalyzeFrame")
+        for(let i = 0; i < analyzeFrame.length; i++) {
+            let element = analyzeFrame[i] as HTMLElement;
+            element.style.display = "block";
+        }
+    }
 
 
     /* 카카오맵 */
@@ -204,20 +240,12 @@ const AnalyzePage = () => {
                             </td>
                         </tr>
                         <tr>
-                            {/* <td className={styles.td}>
-                                <label>업종</label>
-                                <input 
-                                    className={styles.input} 
-                                    name='category' 
-                                    onChange={onSBChange} 
-                                />
-                            </td> */}
                             <td className={styles.td}>
                                 <label>업종</label>
                                 <LabelBasicSelect
                                     text='업종대분류 선택'
-                                    name='categoryL'
-                                    id='categoryL'
+                                    name='cateLData'
+                                    id='cateLData'
                                     options={cateLList}
                                     value={categoryL}
                                     hasError={isValidCateL}
@@ -225,8 +253,8 @@ const AnalyzePage = () => {
                                 />
                                 <LabelBasicSelect
                                     text='학원분류 선택'
-                                    name='categoryA'
-                                    id='categoryA'
+                                    name='cateAData'
+                                    id='cateAData'
                                     options={cateAList}
                                     value={categoryA}
                                     hasError={isValidCateA}
@@ -234,8 +262,8 @@ const AnalyzePage = () => {
                                 />
                                 <LabelBasicSelect
                                     text='업종중분류 선택'
-                                    name='categoryM'
-                                    id='categoryM'
+                                    name='cateMData'
+                                    id='cateMData'
                                     options={cateMList}
                                     value={categoryM}
                                     hasError={isValidCateM}
@@ -258,11 +286,15 @@ const AnalyzePage = () => {
                         </tr>
                         <tr> 
                             <td className={styles.td}>
-                                <div className={styles.Frame}>
-                                    oo동의 oo 점포<br/>
-                                    유동 인구는 oo이며<br/>
-                                    oo 점포 수는 oo개이고<br/>
-                                    상권 전체 대비 포화/여유 상태입니다.<br/>
+                                <div className={styles.AnalyzeFrame}>
+                                    {shopData.addressSido} {shopData.addressSigungu}의 {shopData.cateMData} 점포<br/>
+                                    총 개수는 {resultData.sum}개이며,<br/>
+                                    평균 {resultData.avg}년 이상의 경력을 보유 중입니다.<br/><br/>
+                                    1년 미만 경력의 점포 수는 {resultData.year1}개,<br/>
+                                    1년에서 2년 경력의 점포 수는 {resultData.year2}개,<br/>
+                                    2년에서 3년 경력의 점포 수는 {resultData.year3}개,<br/>
+                                    3년에서 5년 경력의 점포 수는 {resultData.year4}개,<br/>
+                                    5년 이상 경력의 점포 수는 {resultData.year5}개입니다.
                                 </div>
                             </td>
                         </tr>

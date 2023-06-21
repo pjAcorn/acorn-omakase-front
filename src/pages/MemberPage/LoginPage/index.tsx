@@ -4,7 +4,6 @@ import styles from './style.module.scss';
 import DesktopLogo from '../../../assets/TextLogo';
 import Button from '../../../components/styled-components/Button';
 import LabelBasicInput from '../../../components/LabelBasicInput';
-import { ID_REQUIRE_CHECK, PW_REQUIRE_CHECK, SIGNUP_VALID_CHECK } from '../../../contants/message';
 import API from '../../../API/API';
 import { AxiosResponse } from 'axios'
 
@@ -20,13 +19,6 @@ interface UserData {
 const LoginPage = () => {
     const navigate = useNavigate();
 
-    const [isValidLoginId, setIsValidLoginId] = useState<boolean>(false);
-    const [isValidPassword, setIsValidPassword] = useState<boolean>(false);
-    const [isValidSignUp, setIsValidSignUp] = useState<boolean>(false);
-    // Error Message
-    const [loginIdErrorMessage] = useState<string>(ID_REQUIRE_CHECK);
-    const [passwordErrorMessage] = useState<string>(PW_REQUIRE_CHECK);
-    const [signUpErrorMessage] = useState<string>(SIGNUP_VALID_CHECK);
     const [inputs, setInputs] = useState({
         loginId: '',
         password: '',
@@ -55,26 +47,11 @@ const LoginPage = () => {
   // handleSubmit
   const handleSubmit = async () => {
     const data = { loginId, password };
-    try {
-      const response = await API.logIn(data);
-      setLocalstorage(response);
-      navigate('/');
-      } catch (error) {
-        setIsValidSignUp(true);
+    const response = await API.logIn(data);
+    setLocalstorage(response);
+    navigate('/');
     }
-  }
-    
-    // LoginId onBlur Event
-  const onBlurLoginId = () => {
-    if (!loginId) setIsValidLoginId(true);
-    if (loginId) setIsValidLoginId(false);
-  };
-
-  // Password onBlure Event
-  const onBlurPassword = () => {
-    if (!password) setIsValidPassword(true);
-    if (password) setIsValidPassword(false);
-  };
+  
 
     // Set localstorage
     const setLocalstorage = (response: AxiosResponse<UserData>) => {
@@ -100,10 +77,7 @@ const LoginPage = () => {
                       type='text'
                       value={loginId}
                       onChange={onChange}
-                      onBlur={onBlurLoginId}
-                      hasError={isValidLoginId}
-                      placeholder={ID_REQUIRE_CHECK}
-                      errorMessage={loginIdErrorMessage}
+                      placeholder='아이디'
                     />
                     <LabelBasicInput
                       label='password'
@@ -113,12 +87,8 @@ const LoginPage = () => {
                       type='password'
                       value={password}
                       onChange={onChange}
-                      onBlur={onBlurPassword}
-                      hasError={isValidPassword}
-                      placeholder={PW_REQUIRE_CHECK}
-                      errorMessage={passwordErrorMessage} 
+                      placeholder='비밀번호'
                     />
-                    {isValidSignUp && <span className={styles.LoginForm__error}>{signUpErrorMessage}</span>}
                     <div className={styles.button}>
                     <Button text='로그인' onClick={onClickLogin} 
                             background='#D25959'
